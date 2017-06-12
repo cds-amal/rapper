@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import {
+  FormGroup,
+  FormControl,
+  InputGroup,
+  Glyphicon
+} from 'react-bootstrap';
+
 class App extends Component {
 
   render() {
@@ -8,10 +15,17 @@ class App extends Component {
       <div className="App">
         <div className="App-title">I am a Rapper</div>
 
-        <div>
-          <input placeholder="search an artist..."/>
-          <button>button</button>
-        </div>
+        <FormGroup>
+          <InputGroup>
+            <FormControl
+              type="text"
+              placeholder="Search for an Artist"
+            />
+            <InputGroup.Addon>
+              <Glyphicon glyph="search"/>
+            </InputGroup.Addon>
+          </InputGroup>
+        </FormGroup>
 
         <div className="Profile">
           <div>Artist Picture</div>
