@@ -4,7 +4,7 @@ import querystring from 'querystring';
 
 const params = {
   response_type: 'token',
-  redirect_uri: 'http://localhost:3000/callback',
+  redirect_uri: 'https://fathomless-earth-50657.herokuapp.com/callback',
   client_id: config.client_id
 }
 const base_url = 'https://accounts.spotify.com/authorize';
