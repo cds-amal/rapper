@@ -12,6 +12,7 @@ const base_url = 'https://accounts.spotify.com/authorize';
 const auth_url = `${base_url}?${querystring.stringify(params)}`;
 
 export function authorize() {
+  console.log(process.env)
     console.log(auth_url);
 
     axios.get(auth_url)
