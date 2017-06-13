@@ -1,24 +1,26 @@
 import config from '../config';
 import axios from 'axios';
-import querystring from 'querystring';
+import base64 from 'base-64';
 
-const params = {
-  response_type: 'token',
-  redirect_uri: 'https://fathomless-earth-50657.herokuapp.com/callback',
-  client_id: config.client_id
+const secret = `${config.client_id}:${config.client_secret}`;
+const auth_url = 'https://accounts.spotify.com/api/token';
+const  Authorization = `Basic ${base64.encode(secret)}`;
+
+const cfg = {
+  headers: {
+    "Authorization": Authorization
+  }
 }
-const base_url = 'https://accounts.spotify.com/authorize';
 
-const auth_url = `${base_url}?${querystring.stringify(params)}`;
 
-export function authorize() {
-  console.log(process.env)
-    console.log(auth_url);
-
-    axios.get(auth_url)
-      .then(res => console.log(res))
+export function authorize(cb) {
+    axios.post(auth_url, "grant_type=client_credentials", cfg)
+      .then(res => {
+        console.log(res)
+        // invoke callback with valid response
+        cb(res.data);
+      })
       .catch(err =>{
-         console.log('axios farted')
          console.log(err)
        })
 }

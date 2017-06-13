@@ -19,12 +19,18 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    authorize((credentials) => {
+      this.setState({credentials})
+    })
+  }
+
   search() {
     const BASE_URL = 'https://api.spotify.com/v1/search?q=';
     const FETCH_URL = BASE_URL + this.state.query + '&type=artist&limit=1';
 
     console.log('FETCH_URL', FETCH_URL);
-    authorize(this.state.query);
+    console.log(this.state);
 
   }
 

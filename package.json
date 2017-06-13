@@ -5,6 +5,7 @@
   "dependencies": {
     "aws-sdk": "^2.68.0",
     "axios": "^0.16.2",
+    "base-64": "^0.1.0",
     "querystring": "^0.2.0",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
@@ -19,6 +20,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "proxy": "https://api.spotify.com/authorize"
+  }
 }
