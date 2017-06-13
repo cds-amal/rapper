@@ -8,6 +8,8 @@ import {
   Glyphicon
 } from 'react-bootstrap';
 
+import { authorize } from './services/auth';
+
 class App extends Component {
 
   constructor(props) {
@@ -22,6 +24,7 @@ class App extends Component {
     const FETCH_URL = BASE_URL + this.state.query + '&type=artist&limit=1';
 
     console.log('FETCH_URL', FETCH_URL);
+    authorize(this.state.query);
 
   }
 
