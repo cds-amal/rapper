@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
+import Profile from './profile';
 
 import {
   FormGroup,
@@ -15,22 +17,38 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
+      query: '',
+      artist: null
     }
   }
 
   componentDidMount() {
     authorize((credentials) => {
       this.setState({credentials})
+      const auth_headers = {
+        headers: {
+          "Authorization": `Bearer ${credentials.access_token}`
+        }
+      }
+      this.setState({auth_headers})
     })
   }
 
   search() {
     const BASE_URL = 'https://api.spotify.com/v1/search?q=';
-    const FETCH_URL = BASE_URL + this.state.query + '&type=artist&limit=1';
+    const query_url = `${BASE_URL}${this.state.query}&type=artist&limit=1`;
 
-    console.log('FETCH_URL', FETCH_URL);
+    console.log('query_url', query_url);
     console.log(this.state);
+
+    axios.get(query_url, this.state.auth_headers)
+      .then(res => {
+        const artist = res.data.artists.items[0];
+        this.setState({artist})
+        console.log('artist', artist)
+        console.log(res.data)
+      })
+      .catch(err => console.log(err))
 
   }
 
@@ -60,15 +78,19 @@ class App extends Component {
             </InputGroup.Addon>
           </InputGroup>
         </FormGroup>
-
-        <div className="Profile">
-          <div>Artist Picture</div>
-          <div>Artist Name</div>
-        </div>
-
-        <div className="Gallery">
-          Gallery
-        </div>
+        {
+          this.state.artist !== null
+          ?
+          <div>
+            <Profile
+              artist={this.state.artist}
+            />
+            <div className="Gallery">
+              Gallery
+            </div>
+          </div>
+          : <div></div>
+        }
       </div>
     );
   }
