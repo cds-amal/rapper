@@ -42,7 +42,7 @@ class App extends Component {
     console.log(this.state);
     return (
       <div className="App">
-        <div className="App-title">I am a Rapper</div>
+        <div className="App-title">Club 7300 Preview Spot</div>
 
         <FormGroup>
           <InputGroup>
