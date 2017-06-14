@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Profile from './profile';
+import Gallery from './gallery';
 
 import {
   FormGroup,
@@ -71,9 +72,9 @@ class App extends Component {
             <Profile
               artist={this.state.artist}
             />
-            <div className="Gallery">
-              Gallery
-            </div>
+            <Gallery
+              tracks={this.state.tracks}
+            />
           </div>
           : <div></div>
         }
