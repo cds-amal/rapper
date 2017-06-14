@@ -28,14 +28,20 @@ export function authorize(callback) {
     .catch(error => console.log(error))
 }
 
-
 export function searchArtist(query, credentials, callback) {
   const query_url = `${SEARCH_API}${query}&type=artist&limit=1`;
 
   axios.get(query_url, credentials)
     .then(res => {
       const artist = res.data.artists.items[0];
-      callback({artist})
+      const top_tracks = `${SPOTIFY_API}artists/${artist.id}/top-tracks?country=US`;
+
+      axios.get(top_tracks, credentials)
+        .then(res => {
+          console.log(res.data)
+          callback({artist, tracks: res.data.tracks});
+        })
+        .catch(error => console.log(error))
     })
     .catch(error => console.log(error))
 }

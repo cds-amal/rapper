@@ -9,7 +9,7 @@ import {
   Glyphicon
 } from 'react-bootstrap';
 
-import { authorize, searchArtist } from './services/auth';
+import { authorize, searchArtist } from './services/spotify';
 
 class App extends Component {
 
@@ -31,7 +31,9 @@ class App extends Component {
     searchArtist(
       this.state.query,
       this.state.credentials,
-      (artist) => this.setState(artist)
+      (artistInfo) => {
+        this.setState(artistInfo)
+      }
     );
   }
 
