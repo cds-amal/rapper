@@ -9,6 +9,7 @@ const SEARCH_API = `${SPOTIFY_API}search?q=`;
 const secret = `${config.client_id}:${config.client_secret}`;
 const auth_url = 'https://accounts.spotify.com/api/token';
 const Authorization = `Basic ${base64.encode(secret)}`;
+console.log(secret)
 
 const cfg = {
   headers: {
