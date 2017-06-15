@@ -29,20 +29,24 @@ export function authorize(callback) {
     .catch(error => console.log(error))
 }
 
-export function searchArtist(query, credentials, callback) {
+export function searchArtist(query, credentials, cbSuccess, cbFailure) {
   const query_url = `${SEARCH_API}${query}&type=artist&limit=1`;
 
   axios.get(query_url, credentials)
     .then(res => {
-      const artist = res.data.artists.items[0];
-      const top_tracks = `${SPOTIFY_API}artists/${artist.id}/top-tracks?country=US`;
+      if (res.data.artists.items.length === 0) {
+        cbFailure(`No results for "${query}"`);
+      } else {
+        const artist = res.data.artists.items[0];
+        const top_tracks = `${SPOTIFY_API}artists/${artist.id}/top-tracks?country=US`;
 
-      axios.get(top_tracks, credentials)
-        .then(res => {
-          const tracks = res.data.tracks.filter(track => track.preview_url);
-          callback({artist, tracks});
-        })
-        .catch(error => console.log(error))
+        axios.get(top_tracks, credentials)
+          .then(res => {
+            const tracks = res.data.tracks.filter(track => track.preview_url);
+            cbSuccess({artist, tracks});
+          })
+          .catch(error => console.log(error))
+      }
     })
     .catch(error => console.log(error))
 }

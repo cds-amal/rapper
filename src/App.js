@@ -4,6 +4,8 @@ import Profile from './profile';
 import Gallery from './gallery';
 
 import {
+  Alert,
+  Fade,
   FormGroup,
   FormControl,
   InputGroup,
@@ -18,7 +20,8 @@ class App extends Component {
     super(props);
     this.state = {
       query: '',
-      artist: null
+      artist: null,
+      searchError: null
     }
   }
 
@@ -29,12 +32,13 @@ class App extends Component {
   }
 
   search() {
+    const success = (artistInfo)   => this.setState(artistInfo);
+    const failure = (searchError) => this.setState({searchError})
     searchArtist(
       this.state.query,
       this.state.credentials,
-      (artistInfo) => {
-        this.setState(artistInfo)
-      }
+      success,
+      failure
     );
   }
 
@@ -63,6 +67,16 @@ class App extends Component {
 
             </InputGroup.Addon>
           </InputGroup>
+          <Fade
+            in={this.state.searchError !== null}
+          >
+            <Alert
+              bsStyle="warning"
+              onMouseOver={() => this.setState({searchError: null})}
+            >
+              <strong>{this.state.searchError}</strong>
+            </Alert>
+          </Fade>
         </FormGroup>
         {
           this.state.artist !== null
