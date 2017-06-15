@@ -19,7 +19,7 @@ const cfg = {
 }
 
 export function authorize(callback) {
-  axios.post(AUTH_URL, "grant_type=client_credentials", cfg)
+  axios.post(AUTH_API, "grant_type=client_credentials", cfg)
     .then(res => {
       callback({
         headers: {
