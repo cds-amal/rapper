@@ -6,6 +6,10 @@
   "proxies": {
     "/authorize/": {
      "origin": "https://accounts.spotify.com"
+   },
+
+   "/api/": {
+     "origin": "https://api.spotify.com"
    }
   }
 }
