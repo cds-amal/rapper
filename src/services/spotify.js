@@ -2,14 +2,8 @@ import config from '../config';
 import axios from 'axios';
 import base64 from 'base-64';
 
-// Heroku config
-const AUTH_API = '/authorize/api/token';
-const SPOTIFY_API = '/api/v1/';
-
-
-// local dev settings -- will need to disable cors on browser
-// const AUTH_API = 'https://accounts.spotify.com/api/token';
-// const SPOTIFY_API = 'https://api.spotify.com/v1/';
+const AUTH_API = process.env.REACT_APP_AUTH_API;
+const SPOTIFY_API = process.env.REACT_APP_SPOTIFY_API;
 
 const SEARCH_API = `${SPOTIFY_API}search?q=`;
 
@@ -45,7 +39,8 @@ export function searchArtist(query, credentials, callback) {
 
       axios.get(top_tracks, credentials)
         .then(res => {
-          callback({artist, tracks: res.data.tracks});
+          const tracks = res.data.tracks.filter(track => track.preview_url);
+          callback({artist, tracks});
         })
         .catch(error => console.log(error))
     })
