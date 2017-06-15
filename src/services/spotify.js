@@ -2,12 +2,14 @@ import config from '../config';
 import axios from 'axios';
 import base64 from 'base-64';
 
-const SPOTIFY_API = 'https://api.spotify.com/v1/';
+//const SPOTIFY_API = 'https://api.spotify.com/v1/';
+const SPOTIFY_API = '/spotify_api/v1/';
 const SEARCH_API = `${SPOTIFY_API}search?q=`;
 
 // prep for authentication
 const secret = `${config.client_id}:${config.client_secret}`;
-const auth_url = 'https://accounts.spotify.com/api/token';
+//const auth_url = 'https://accounts.spotify.com/api/token';
+const auth_url = '/spotify_auth/api/token';
 const Authorization = `Basic ${base64.encode(secret)}`;
 
 const cfg = {
