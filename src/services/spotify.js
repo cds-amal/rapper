@@ -2,8 +2,14 @@ import config from '../config';
 import axios from 'axios';
 import base64 from 'base-64';
 
+// Heroku config
 const AUTH_API = '/authorize/api/token';
 const SPOTIFY_API = '/api/v1/';
+
+
+// local dev settings -- will need to disable cors on browser
+// const AUTH_API = 'https://accounts.spotify.com/api/token';
+// const SPOTIFY_API = 'https://api.spotify.com/v1/';
 
 const SEARCH_API = `${SPOTIFY_API}search?q=`;
 

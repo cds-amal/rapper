@@ -45,7 +45,6 @@ class Gallery extends Component {
     return (
       <div>
         {tracks.map((track, k) => {
-          console.log('track', track);
           const trackImg = track.album.images[0].url;
           return (
             <div
@@ -70,9 +69,9 @@ class Gallery extends Component {
               </div>
             </div>
 
-            <p className="track-text">
-              {track.name}
-            </p>
+              <p className="track-text">
+                {track.name}
+              </p>
             </div>
           )
         })}
