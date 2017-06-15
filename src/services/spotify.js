@@ -2,14 +2,14 @@ import config from '../config';
 import axios from 'axios';
 import base64 from 'base-64';
 
-//const SPOTIFY_API = 'https://api.spotify.com/v1/';
-const SPOTIFY_API = '/spotify_api/v1/';
+const SPOTIFY_API = 'https://api.spotify.com/v1/';
+// const SPOTIFY_API = '/spotify_api/v1/';
+// const auth_url = '/spotify_auth/api/token';
 const SEARCH_API = `${SPOTIFY_API}search?q=`;
+const AUTH_API = 'https://accounts.spotify.com/api/token';
 
 // prep for authentication
 const secret = `${config.client_id}:${config.client_secret}`;
-//const auth_url = 'https://accounts.spotify.com/api/token';
-const auth_url = '/spotify_auth/api/token';
 const Authorization = `Basic ${base64.encode(secret)}`;
 
 const cfg = {
@@ -19,7 +19,7 @@ const cfg = {
 }
 
 export function authorize(callback) {
-  axios.post(auth_url, "grant_type=client_credentials", cfg)
+  axios.post(AUTH_URL, "grant_type=client_credentials", cfg)
     .then(res => {
       callback({
         headers: {
