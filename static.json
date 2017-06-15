@@ -3,9 +3,9 @@
 
   "clean_urls": false,
 
-  "headers": {
-    "/**": {
-     "Access-Control-Allow-Origin": "*"
+  "proxies": {
+    "/authorize/": {
+     "origin": "https://accounts.spotify.com"
    }
   }
 }
