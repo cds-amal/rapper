@@ -5,7 +5,7 @@
     },
 
     "/spotify_auth/": {
-      "origin": "https://accounts.spotify.com/
+      "origin": "https://accounts.spotify.com/"
     }
   }
 }
