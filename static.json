@@ -1,7 +1,4 @@
 {
-  "headers": {
-    "/**": {
-      "Access-Control-Allow-Origin": "*"
-    }
-  }
+  "root": "public_html",
+  "clean_urls": false
 }
