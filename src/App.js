@@ -23,9 +23,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // authorize(
-    //   (credentials) => this.setState({credentials})
-    // )
+    authorize(
+      (credentials) => this.setState({credentials})
+    )
   }
 
   search() {
