@@ -3,7 +3,7 @@ import axios from 'axios';
 import base64 from 'base-64';
 
 const AUTH_API = '/authorize/api/token';
-const SPOTIFY_API = '/spotify_api/v1/';
+const SPOTIFY_API = '/api/v1/';
 
 const SEARCH_API = `${SPOTIFY_API}search?q=`;
 
