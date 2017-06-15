@@ -39,7 +39,6 @@ export function searchArtist(query, credentials, callback) {
 
       axios.get(top_tracks, credentials)
         .then(res => {
-          console.log(res.data)
           callback({artist, tracks: res.data.tracks});
         })
         .catch(error => console.log(error))
