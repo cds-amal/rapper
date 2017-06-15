@@ -15,6 +15,7 @@ class Gallery extends Component {
   playAudio(previewUrl) {
     let audio = new Audio(previewUrl);
     if (!this.state.playing) {
+      audio.volume = 0.05;
       audio.play();
       this.setState({
         playing: true,
@@ -29,6 +30,7 @@ class Gallery extends Component {
         })
       } else {
         this.state.audio.pause();
+        audio.volume = 0.05;
         audio.play();
         this.setState({
           playing: true,
